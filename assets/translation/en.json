@@ -1,0 +1,255 @@
+{
+  "app_name": "Zykoon",
+  "tagline": "Eat Clean, Feel Green.",
+  "welcome": "Welcome to Zykoon",
+  "get_started": "Get Started",
+  
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "forgot_password": "Forgot Password?",
+    "reset_password": "Reset Password",
+    "dont_have_account": "Don't have an account?",
+    "already_have_account": "Already have an account?",
+    "sign_up": "Sign Up",
+    "sign_in": "Sign In",
+    "full_name": "Full Name",
+    "phone_number": "Phone Number",
+    "verify_otp": "Verify OTP",
+    "resend_code": "Resend Code"
+  },
+  
+  "home": {
+    "title": "Home",
+    "search_placeholder": "What would you like today? 🍽️",
+    "featured_meals": "Featured Meals",
+    "popular_meals": "Popular Meals",
+    "categories": "Categories",
+    "view_all": "View All"
+  },
+  
+  "categories": {
+    "all": "All",
+    "keto": "Keto",
+    "vegan": "Vegan",
+    "protein": "High Protein",
+    "low_calorie": "Low Calorie",
+    "vegetarian": "Vegetarian",
+    "gluten_free": "Gluten Free"
+  },
+  
+  "meal": {
+    "details": "Meal Details",
+    "add_to_cart": "Add to Cart",
+    "ingredients": "Ingredients",
+    "nutrition_info": "Nutrition Information",
+    "calories": "Calories",
+    "protein": "Protein",
+    "carbs": "Carbs",
+    "fats": "Fats",
+    "reviews": "Reviews",
+    "add_review": "Add Review",
+    "chef": "Chef",
+    "preparation_time": "Preparation Time",
+    "servings": "Servings",
+    "price": "Price"
+  },
+  
+  "cart": {
+    "title": "Cart",
+    "empty_cart": "Your cart is empty",
+    "checkout": "Checkout",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "delivery_fee": "Delivery Fee",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "clear_cart": "Clear Cart"
+  },
+  
+  "orders": {
+    "title": "Orders",
+    "order_history": "Order History",
+    "order_details": "Order Details",
+    "order_number": "Order #",
+    "order_status": "Status",
+    "cancel_order": "Cancel Order",
+    "track_order": "Track Order",
+    "reorder": "Reorder",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "preparing": "Preparing",
+    "ready": "Ready",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  },
+  
+  "profile": {
+    "title": "Profile",
+    "my_orders": "My Orders",
+    "my_plans": "My Plans",
+    "favorites": "Favorites",
+    "settings": "Settings",
+    "edit_profile": "Edit Profile",
+    "change_password": "Change Password",
+    "notifications": "Notifications",
+    "language": "Language",
+    "theme": "Theme",
+    "help": "Help & Support",
+    "about": "About",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "logout_confirmation": "Are you sure you want to logout?"
+  },
+  
+  "plans": {
+    "title": "Nutrition Plans",
+    "create_plan": "Create Plan",
+    "daily_plan": "Daily Plan",
+    "weekly_plan": "Weekly Plan",
+    "monthly_plan": "Monthly Plan",
+    "calories_goal": "Calories Goal",
+    "protein_goal": "Protein Goal",
+    "carbs_goal": "Carbs Goal",
+    "fats_goal": "Fats Goal",
+    "progress": "Progress"
+  },
+  
+  "chef": {
+    "title": "Chef Dashboard",
+    "add_meal": "Add Meal",
+    "my_meals": "My Meals",
+    "analytics": "Analytics",
+    "earnings": "Earnings",
+    "become_chef": "Become a Chef",
+    "total_sales": "Total Sales",
+    "total_orders": "Total Orders",
+    "rating": "Rating"
+  },
+  
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "update": "Update",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "loading": "Loading...",
+    "retry": "Try Again",
+    "ok": "OK",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "done": "Done",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "no_internet": "No internet connection. Please check your network.",
+    "timeout": "Request timeout. Please try again.",
+    "not_found": "Resource not found.",
+    "unauthorized": "Unauthorized. Please login again.",
+    "forbidden": "Access forbidden.",
+    "server_error": "Server error. Please try again later.",
+    "validation_error": "Please check your input and try again.",
+    "empty_field": "This field cannot be empty",
+    "invalid_email": "Invalid email address",
+    "invalid_password": "Password must be at least 8 characters",
+    "passwords_dont_match": "Passwords don't match",
+    "invalid_phone": "Invalid phone number"
+  },
+  
+  "success": {
+    "login": "Login successful",
+    "register": "Registration successful",
+    "order_placed": "Order placed successfully",
+    "profile_updated": "Profile updated successfully",
+    "password_changed": "Password changed successfully",
+    "review_added": "Review added successfully",
+    "added_to_cart": "Added to cart",
+    "added_to_favorites": "Added to favorites"
+  },
+  
+  "onboarding": {
+    "pageOne": {
+      "title": "Welcome to the most tastiest app",
+      "description": "You know, this app is edible meaning you can eat it!"
+    },
+    "pageTwo": {
+      "title": "Fast and reliable delivery",
+      "description": "Get your healthy meals delivered fresh to your doorstep in no time!"
+    },
+    "pageThree": {
+      "title": "All your favorites",
+      "description": "Get all your loved foods in one place, you just place the order we do the rest"
+    },
+    "title1": "All your favorites",
+    "description1": "Get all your loved foods in one once place, you just place the order we do the rest",
+    "title2": "Healthy Meals",
+    "description2": "Discover nutritious and delicious meals prepared by certified chefs",
+    "title3": "Custom Plans",
+    "description3": "Create personalized nutrition plans tailored to your goals",
+    "next": "Next",
+    "skip": "Skip",
+    "get_started": "Get Started",
+    "continue_with_apple": "Continue with Apple",
+    "continue_with_google": "Continue with Google",
+    "continue_with_email": "Continue with Email",
+    "apple": "Apple",
+    "google": "Google"
+  },
+  
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "passwordRequireUpperCase": "Password must contain at least one uppercase letter",
+    "passwordRequireLowerCase": "Password must contain at least one lowercase letter",
+    "passwordRequireNumber": "Password must contain at least one number",
+    "passwordRequireSpecialChar": "Password must contain at least one special character",
+    "confirmPasswordRequired": "Please confirm your password",
+    "confirmPasswordMismatch": "Passwords do not match",
+    "cardNumberRequired": "Card number is required",
+    "cardNumberInvalid": "Invalid card number",
+    "cardNumberLength": "Card number must be 13-19 digits",
+    "cardCvvRequired": "CVV is required",
+    "cardCvvInvalid": "Invalid CVV",
+    "cardCvvLength": "CVV must be 3 or 4 digits",
+    "cardExpiryRequired": "Expiry date is required",
+    "cardExpiryInvalid": "Invalid expiry date (use MMYY)",
+    "cardExpiryInvalidMonth": "Invalid month (01-12)",
+    "cardExpiryExpired": "Card has expired",
+    "cardholderNameRequired": "Cardholder name is required",
+    "cardholderNameMinLength": "Name must be at least 3 characters",
+    "cardholderNameInvalid": "Invalid cardholder name",
+    "donationAmountRequired": "Donation amount is required",
+    "donationAmountInvalid": "Invalid donation amount",
+    "donationAmountMustBePositive": "Donation amount must be greater than 0",
+    "donationAmountExceedsRemaining": "Donation amount exceeds remaining amount"
+  },
+  
+  "login": {
+    "wrongCode": "Invalid OTP code",
+    "validation_phoneRequired": "Phone number is required",
+    "validation_phoneDigitsOnly": "Phone number must contain only digits",
+    "validation_phoneLengthWith0": "Phone number must be 10 digits starting with 0",
+    "validation_phoneLengthWithout0": "Phone number must be 9 digits",
+    "validation_nameRequired": "Name is required",
+    "validation_nameMinLength": "Name must be at least 2 characters",
+    "validation_nameLettersOnly": "Name must contain only letters",
+    "validation_countryRequired": "Country is required"
+  }
+}

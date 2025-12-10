@@ -1,0 +1,142 @@
+---
+alwaysApply: true
+. Design Principles
+Core Philosophy
+Arabic-First Design: Primary language is Arabic with RTL support
+Charity/Growth Theme: Green color palette representing growth and giving
+Clean & Modern: Minimalist design with clear hierarchy
+Responsive: Single codebase for mobile, web, and desktop
+Accessible: High contrast, readable text, touch-friendly
+Visual Style
+✅ Soft shadows for depth
+✅ Rounded corners (no sharp edges)
+✅ Subtle backgrounds with opacity
+✅ Icon-text combinations
+✅ Card-based layouts
+❌ No harsh borders
+❌ No busy backgrounds
+❌ No small touch targets
+2. Color System (AppColors)
+Primary Colors
+// Main brand colorsprimary:   #1F4C35  // Dark green - main actions, headerssecondary: #49B27C  // Medium green - secondary actionstertiary:  #96D2B5  // Light green - accents, highlights
+Functional Colors
+// Success/ProgressprogressBarFilled:   #0D9D57tabActiveIndicator:  #0D9D57// Backgroundssurface:             #FFFFFFcatalogBackground:   #F6F6F6campaignCardBg:      #F7F7F7bottomSheetBg:       #F7F7F7dropdownBackground:  #F2F2F2// Borders & DividerstextFiledBorder:     #E0E0E0dividerColor:        #D9D9D9bottomSheetDivider:  #C0C0C0chipBorderInactive:  #D9D9D9// TexttextPrimary:         #000000textSecondary:       #808080 (grey)textOnPrimary:       #FFFFFFcatalogTextColor:    #3B3B3BcampaignTitleColor:  #292D32// ShadowsshadowLight:         #1A000000 (black with 10% opacity)donationCardShadow:  #190D9D57 (green with 10% opacity)
+Color Usage Rules
+✅ DO:
+Use primary for main CTAs and important actions
+Use secondary for hover states and secondary actions
+Use tertiary for backgrounds and subtle accents
+Use text colors consistently (primary for main, secondary for meta)
+Apply shadows for depth and hierarchy
+❌ DON'T:
+Mix custom hex colors (use AppColors constants)
+Use pure black (#000000) for text unless specified
+Use colors directly (always reference AppColors.)
+3. Typography
+Font Families
+// Dynamic font selection based on localeArabic:  'Almarai'   // Primary font for ArabicEnglish: 'Poppins'   // Primary font for English
+Text Scale System
+// Use theme.textTheme for all textdisplayLarge:   32.sp, FontWeight.bold    // Hero titles, main headlinesdisplayMedium:  28.sp, FontWeight.w600    // Section titlesdisplaySmall:   24.sp, FontWeight.w500    // Large headlinesheadlineMedium: 24.sp, FontWeight.w600    // Page headlinesheadlineSmall:  18.sp, FontWeight.w500    // Subsection titlestitleLarge:     16.sp, FontWeight.w600    // Card titles, important labelstitleMedium:    13.sp, FontWeight.w600    // Medium titlestitleSmall:     10.sp, FontWeight.w700    // Small titlesbodyLarge:      16.sp, FontWeight.w400    // Large body textbodyMedium:     14.sp, FontWeight.w400    // Default body text ⭐ MOST COMMONbodySmall:      12.sp, FontWeight.w300    // Small text, captionslabelLarge:     14.sp, FontWeight.w600    // Button labelslabelSmall:      8.sp, FontWeight.w400    // Tiny labels
+Typography Rules
+✅ DO:
+// Always use theme.textThemefinal theme = Theme.of(context);AppText(  'Text',  style: theme.textTheme.bodyMedium?.copyWith(    color: AppColors.textPrimary,    fontSize: 14.sp,  // Override if needed  ),)
+❌ DON'T:
+// Don't create TextStyle from scratchText(  'Text',  style: TextStyle(fontSize: 14), // ❌ Wrong!)// Don't use raw valuesText('Text', style: TextStyle(fontSize: 14)) // ❌ Use 14.sp instead
+Line Heights
+// Common line heightsheight: 1.35  // Tight (for titles)height: 1.40  // Normal (for buttons)height: 1.43  // Medium (for labels)height: 1.60  // Comfortable (for body text)height: 1.64  // Relaxed (for hints)
+4. Spacing & Sizing
+Responsive Units (ScreenUtil)
+.w   // Width values (e.g., 24.w).h   // Height values (e.g., 16.h).sp  // Font sizes (e.g., 14.sp).r   // Border radius (e.g., 20.r)
+Spacing Scale
+// Standard spacing values (use .w or .h)4.w/h    // Tiny gap6.w/h    // Extra small8.w/h    // Small12.w/h   // Small-medium16.w/h   // Medium ⭐ MOST COMMON20.w/h   // Medium-large24.w/h   // Large ⭐ COMMON FOR SCREEN PADDING32.w/h   // Extra large40.w/h   // XXL48.w/h   // XXXL
+Border Radius Scale
+// Standard border radius values5.r      // Small (icon buttons, chips)10.r     // Medium (cards)12.r     // Medium-large (buttons)16.r     // Large (containers)20.r     // Extra large (filled buttons)30.r     // XXL (bottom sheets)40.r     // XXXL (text fields)
+Standard Component Sizes
+// ButtonsCustomFilledButton:  width: 342.w, height: 40.h, borderRadius: 20.rCustomOutlinedButton:  Similar to filled button// Text FieldsCustomTextField:  width: 325.w, height: 75.h, borderRadius: 40.r// Icon ButtonsCustomFavouriteButton / CustomShareButton:  width: 40.w, height: 32.h, borderRadius: 5.r// IconsSmall:  16.sp - 18.spMedium: 20.sp - 24.sp ⭐ MOST COMMONLarge:  30.sp - 32.sp
+5. Component Library
+Buttons
+1. CustomFilledButton (Primary CTA)
+CustomFilledButton(  text: LocaleKeys.someKey,  // Pass localization key  onPressed: () {},  // Optional customizations  backgroundColor: AppColors.primary,  textColor: AppColors.textOnPrimary,  width: 342.w,  height: 40.h,  fontSize: 16.sp,  fontWeight: FontWeight.w700,  borderRadius: 20.r,  icon: Icons.favorite,  // Optional icon  iconColor: Colors.white,)
+2. CustomOutlinedButton (Secondary Action)
+CustomOutlinedButton(  text: LocaleKeys.someKey,  onPressed: () {},  // Similar properties to CustomFilledButton)
+3. CustomFavouriteButton (Toggle Action)
+CustomFavouriteButton(  isFavorited: false,  // Initial state  onTap: () {    debugPrint('Favorite toggled');  },  // Optional customizations  backgroundColor: Color(0x19047D3F),  // Green with 10% opacity  activeIconColor: Color(0xFF047D3F),  inactiveIconColor: Color(0xFF047D3F),  width: 40.w,  height: 32.h,  iconSize: 20.sp,  borderRadius: 5.r,)
+4. CustomShareButton (Action Button)
+CustomShareButton(  onTap: () {    // Implement share logic  },  // Optional customizations  backgroundColor: Color(0x19047D3F),  iconColor: Color(0xFF047D3F),  width: 40.w,  height: 32.h,  iconSize: 20.sp,  borderRadius: 5.r,)
+Form Components
+CustomTextField
+final _controller = TextEditingController();final _validator = const EmailValidator();CustomTextField(  controller: _controller,  labelText: LocaleKeys.login_emailLabel.tr(),  // Optional label  hintText: 'example@email.com',  // Optional hint  keyboardType: TextInputType.emailAddress,  obscureText: false,  // true for passwords  validator: (value) => _validator.resolve(value).message,  width: 325.w,   // Optional  height: 75.h,   // Optional  onChanged: (value) {},  // Optional)// Don't forget to dispose!@overridevoid dispose() {  _controller.dispose();  super.dispose();}
+Text Component
+AppText (Localized Text Wrapper)
+// Auto-translated (default)AppText(  LocaleKeys.home_heroTitle,  style: theme.textTheme.displayLarge,)// Raw text (no translation)AppText(  'Raw text here',  translation: false,  style: theme.textTheme.bodyMedium,)// Scrolling textAppText(  LocaleKeys.someKey,  scrollText: true,  // Animated horizontal scroll)// Auto-scaling textAppText(  LocaleKeys.someKey,  isAutoScale: true,  // Scales to fit)
+Layout Components
+AppScaffold (Three Variants)
+// 1. Clean - No app barAppScaffold.clean(  body: YourWidget(),  backgroundColor: Colors.white,)// 2. Custom - Custom app barAppScaffold.custom(  appBar: CustomAppBar(),  body: YourWidget(),)// 3. Home - Default app bar with notificationsAppScaffold.home(  body: YourWidget(),)
+Bottom Sheet Pattern
+class YourBottomSheet extends StatelessWidget {  const YourBottomSheet({super.key});  // Static show method (REQUIRED PATTERN)  static Future<void> show(BuildContext context) {    return showModalBottomSheet(      context: context,      isScrollControlled: true,      backgroundColor: Colors.transparent,      builder: (context) => const YourBottomSheet(),    );  }  @override  Widget build(BuildContext context) {    return Container(      decoration: BoxDecoration(        color: AppColors.textOnPrimary,        borderRadius: BorderRadius.only(          topLeft: Radius.circular(30.r),          topRight: Radius.circular(30.r),        ),      ),      child: Column(        mainAxisSize: MainAxisSize.min,        children: [          // Drag handle          SizedBox(height: 9.h),          Container(            width: 42.w,            height: 3.h,            decoration: ShapeDecoration(              color: AppColors.campaignTitleColor,              shape: RoundedRectangleBorder(                borderRadius: BorderRadius.circular(20.r),              ),            ),          ),          SizedBox(height: 20.h),          // Your content here        ],      ),    );  }}// UsageYourBottomSheet.show(context);
+Other Components
+DragHandle()           // Bottom sheet handleProgressBar()          // Progress indicatorSectionHeader()        // Section titlesSelectionChip()        // Selectable chipsCustomTabBar()         // Tab navigationCustomOtpField()       // OTP inputNavItem()             // Navigation items
+6. Layout Patterns
+Standard Page Structure
+class YourPage extends StatefulWidget {  const YourPage({super.key});  @override  State<YourPage> createState() => _YourPageState();}class _YourPageState extends State<YourPage> {  // Controllers (if needed)  final _controller = TextEditingController();  @override  void dispose() {    _controller.dispose();    super.dispose();  }  @override  Widget build(BuildContext context) {    final theme = Theme.of(context);        return LayoutBuilder(      builder: (context, constraints) {        final isDesktop = isDesktopLayout(constraints);                if (isDesktop) {          return _buildDesktopLayout();        }        return _buildMobileLayout();      },    );  }  Widget _buildMobileLayout() {    return AppScaffold.custom(      appBar: CustomAppBar(),      body: SingleChildScrollView(        padding: EdgeInsets.symmetric(          horizontal: 24.w,          vertical: 24.h,        ),        child: Column(          crossAxisAlignment: CrossAxisAlignment.stretch,          children: [            // Your content          ],        ),      ),    );  }  Widget _buildDesktopLayout() {    return AppScaffold.clean(      body: Column(        children: [          NavigationBarWeb(),          Expanded(            child: SingleChildScrollView(              child: Column(                children: [                  // Your content                ],              ),            ),          ),          FooterWeb(),        ],      ),    );  }}
+Container/Card Pattern
+Container(  width: double.infinity,  // or specific value with .w  padding: EdgeInsets.all(16.w),  decoration: BoxDecoration(    color: AppColors.surface,    borderRadius: BorderRadius.circular(16.r),    boxShadow: [      BoxShadow(        color: AppColors.shadowLight,        blurRadius: 8,        offset: Offset(0, 2),      ),    ],  ),  child: Column(    crossAxisAlignment: CrossAxisAlignment.start,    children: [      // Content    ],  ),)
+InkWell (Clickable) Pattern
+InkWell(  onTap: () {    // Handle tap  },  borderRadius: BorderRadius.circular(16.r),  child: Container(    padding: EdgeInsets.all(16.w),    decoration: BoxDecoration(      color: AppColors.surface,      borderRadius: BorderRadius.circular(16.r),    ),    child: // Your content  ),)
+7. Responsive Design
+Breakpoints
+Mobile:     < 600px  (Design size: 390 × 844)Desktop:    ≥ 600px  (Design size: 1440 × 1024)
+Responsive Helpers
+// In core/shared/responsive.dartisDesktopLayout(BoxConstraints constraints)  // ≥ 600isMobileLayout(BoxConstraints constraints)   // < 600isDesktopContext(BuildContext context)isMobileContext(BuildContext context)
+Usage Pattern
+return LayoutBuilder(  builder: (context, constraints) {    final isDesktop = isDesktopLayout(constraints);        if (isDesktop) {      return WebWidget();  // features/*/presentation/widgets/web/    }    return MobileWidget();  // features/*/presentation/widgets/mobile/  },);
+Widget Organization
+presentation/widgets/├── mobile/          # Mobile-specific widgets├── web/             # Web/desktop-specific widgets└── widget/          # Shared widgets
+8. Icons & Assets
+Asset Management (flutter_gen)
+// ImagesImage.asset(  Assets.images.png.logo.path,  width: 100.w,  height: 100.h,)// SVGAssets.images.svg.icons.heart.svg(  width: 24.sp,  height: 24.sp,  colorFilter: ColorFilter.mode(    AppColors.primary,    BlendMode.srcIn,  ),)// Image providerDecorationImage(  image: Assets.images.png.background.provider(),  fit: BoxFit.cover,)
+Material Icons
+// Common iconsIcons.favorite / Icons.favorite_borderIcons.share_outlinedIcons.arrow_forward_iosIcons.chevron_rightIcons.notifications_outlinedIcons.visibility / Icons.visibility_offIcons.error// Standard sizesIcon(  Icons.favorite,  size: 20.sp,  // Medium (most common)  color: AppColors.primary,)
+9. Animation & Interaction
+Touch Targets
+// Minimum touch target: 40x40 logical pixels// Common button size: 40.w × 32.h (acceptable)// Icon button size: 40.w × 40.h (ideal)
+InkWell Ripple
+InkWell(  onTap: () {},  borderRadius: BorderRadius.circular(16.r),  // Match container radius  splashColor: AppColors.primary.withOpacity(0.1),  highlightColor: AppColors.primary.withOpacity(0.05),  child: // Content)
+State Changes
+// Toggle state examplebool _isActive = false;InkWell(  onTap: () {    setState(() {      _isActive = !_isActive;    });  },  child: Container(    color: _isActive ? AppColors.primary : AppColors.surface,    // ...  ),)
+10. Accessibility
+Text Contrast
+// Minimum contrast ratios (WCAG 2.1)Normal text: 4.5:1Large text:  3:1// Current palette compliance✅ Primary text on white: High contrast✅ Secondary text on white: Good contrast✅ White text on primary: High contrast
+RTL Support
+// Automatic RTL support (Arabic-first)// TextAlign.right for Arabic// Icons automatically flip in RTLTextFormField(  textAlign: TextAlign.right,  // For Arabic  // ...)
+Semantic Labels
+// Use AppText for translated labels// Icon buttons should have semanticsIconButton(  icon: Icon(Icons.share),  tooltip: LocaleKeys.share.tr(),  onPressed: () {},)
+📋 Quick Reference Checklist
+Before Creating a New Widget
+[ ] Check if similar component exists in core/component/
+[ ] Use theme.textTheme for text styles
+[ ] Use AppColors constants (no raw colors)
+[ ] Apply .w, .h, .sp, .r for all sizes
+[ ] Support both mobile and web if needed
+[ ] Use AppText for localized strings
+[ ] Add const constructors where possible
+[ ] Dispose controllers in StatefulWidgets
+Before Creating a New Page
+[ ] Use LayoutBuilder for responsive layout
+[ ] Create separate mobile/web variants if needed
+[ ] Use AppScaffold variants
+[ ] Add SingleChildScrollView for scrollable content
+[ ] Use standard padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h)
+[ ] Pass LocaleKeys.* for translated text
+[ ] Implement proper controller disposal
+Common Patterns
+// Standard paddingEdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h)// Standard gapSizedBox(height: 16.h)SizedBox(width: 16.w)// Standard containerContainer(  padding: EdgeInsets.all(16.w),  decoration: BoxDecoration(    color: AppColors.surface,    borderRadius: BorderRadius.circular(16.r),  ),)// Standard textAppText(  LocaleKeys.someKey,  style: theme.textTheme.bodyMedium?.copyWith(    color: AppColors.textPrimary,  ),)
+This design system ensures:
+✅ Consistency across all screens
+✅ Maintainability and scalability
+✅ Responsive design for all platforms
+✅ Accessibility compliance
+✅ Arabic-first, RTL-ready interface
+✅ Clean, modern, charity-focused aesthetic
+and never use depecreated properites and vlues
+---
