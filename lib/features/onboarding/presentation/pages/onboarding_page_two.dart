@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:zyktona_app_flutter/core/constant/app_colors.dart';
 import 'package:zyktona_app_flutter/core/component/custom_filled_button.dart';
 import 'package:zyktona_app_flutter/core/component/custom_outlined_button.dart';
+import 'package:zyktona_app_flutter/core/di/app_dependencies.dart';
 import 'package:zyktona_app_flutter/core/localization/app_text.dart';
 import 'package:zyktona_app_flutter/core/localization/locale_keys.g.dart';
 import 'package:zyktona_app_flutter/core/routing/app_routes.dart';
+import 'package:zyktona_app_flutter/core/theme/app_color_extension.dart';
+import 'package:zyktona_app_flutter/features/onboarding/presentation/bloc/onboarding_bloc.dart';
+import 'package:zyktona_app_flutter/features/onboarding/presentation/bloc/onboarding_event.dart';
+import 'package:zyktona_app_flutter/features/onboarding/presentation/bloc/onboarding_state.dart';
 import 'package:zyktona_app_flutter/gen/assets.gen.dart';
 
 /// Second onboarding page
@@ -17,9 +22,28 @@ class OnboardingPageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colors = theme.extension<AppColorExtension>()!;
 
+    return BlocProvider(
+      create: (context) => getIt<OnboardingBloc>()..add(const ChangePage(1)),
+      child: BlocListener<OnboardingBloc, OnboardingState>(
+        listener: (context, state) {
+          if (state.navigationAction == OnboardingNavigationAction.nextPage) {
+            context.read<OnboardingBloc>().add(const ResetNavigationAction());
+            context.push(AppRoutes.onboardingPageThree);
+          } else if (state.navigationAction == OnboardingNavigationAction.complete) {
+            context.read<OnboardingBloc>().add(const ResetNavigationAction());
+            context.go(AppRoutes.login);
+          }
+        },
+        child: _buildContent(theme, colors),
+      ),
+    );
+  }
+
+  Widget _buildContent(ThemeData theme, AppColorExtension colors) {
     return Scaffold(
-      backgroundColor: AppColors.lightBackground,
+      backgroundColor: colors.background,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -58,7 +82,7 @@ class OnboardingPageTwo extends StatelessWidget {
                       LocaleKeys.onboarding_pageTwo_title,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.displayLarge?.copyWith(
-                        color: AppColors.lightTextPrimary,
+                        color: colors.textPrimary,
                         fontSize: 32.sp,
                         fontWeight: FontWeight.w700,
                         height: 1.20,
@@ -70,7 +94,7 @@ class OnboardingPageTwo extends StatelessWidget {
                       LocaleKeys.onboarding_pageTwo_description,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.bodyLarge?.copyWith(
-                        color: AppColors.lightTextSecondary,
+                        color: colors.textSecondary,
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w400,
                         height: 1.70,
@@ -88,7 +112,7 @@ class OnboardingPageTwo extends StatelessWidget {
                           width: 8.w,
                           height: 8.h,
                           decoration: ShapeDecoration(
-                            color: AppColors.lightInactiveIndicator,
+                            color: colors.inactiveIndicator,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.r),
                             ),
@@ -100,7 +124,7 @@ class OnboardingPageTwo extends StatelessWidget {
                           width: 24.w,
                           height: 8.h,
                           decoration: ShapeDecoration(
-                            color: AppColors.lightPrimary,
+                            color: colors.primary,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.r),
                             ),
@@ -112,7 +136,7 @@ class OnboardingPageTwo extends StatelessWidget {
                           width: 8.w,
                           height: 8.h,
                           decoration: ShapeDecoration(
-                            color: AppColors.lightInactiveIndicator,
+                            color: colors.inactiveIndicator,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.r),
                             ),
@@ -127,10 +151,14 @@ class OnboardingPageTwo extends StatelessWidget {
                     Row(
                       children: [
                         // Skip button
-                        CustomOutlinedButton(
-                          text: LocaleKeys.onboarding_skip,
-                          onPressed: () {
-                            context.go(AppRoutes.login);
+                        BlocBuilder<OnboardingBloc, OnboardingState>(
+                          builder: (context, state) {
+                            return CustomOutlinedButton(
+                              text: LocaleKeys.onboarding_skip,
+                              onPressed: () {
+                                context.read<OnboardingBloc>().add(const SkipOnboarding());
+                              },
+                            );
                           },
                         ),
 
@@ -138,10 +166,14 @@ class OnboardingPageTwo extends StatelessWidget {
 
                         // Next button
                         Expanded(
-                          child: CustomFilledButton(
-                            text: LocaleKeys.onboarding_next,
-                            onPressed: () {
-                              context.push(AppRoutes.onboardingPageThree);
+                          child: BlocBuilder<OnboardingBloc, OnboardingState>(
+                            builder: (context, state) {
+                              return CustomFilledButton(
+                                text: LocaleKeys.onboarding_next,
+                                onPressed: () {
+                                  context.read<OnboardingBloc>().add(const NextPage());
+                                },
+                              );
                             },
                           ),
                         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../constant/app_colors.dart';
 import '../localization/app_text.dart';
+import '../theme/app_color_extension.dart';
 
 /// Custom outlined button with light background
 /// Supports optional icon/image for social login buttons
@@ -28,13 +28,14 @@ class CustomOutlinedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colors = theme.extension<AppColorExtension>()!;
 
     return Container(
       width: width,
       height: height ?? 52.h,
       padding: padding ?? EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
       decoration: ShapeDecoration(
-        color: AppColors.lightPrimary100, // #ECF1E8
+        color: colors.primary100,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.r),
         ),
@@ -56,7 +57,7 @@ class CustomOutlinedButton extends StatelessWidget {
                           AppText(
                             text,
                             style: theme.textTheme.labelLarge?.copyWith(
-                              color: AppColors.lightPrimary, // #54A312
+                              color: colors.primary,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w700,
                               height: 1.70,
@@ -68,7 +69,7 @@ class CustomOutlinedButton extends StatelessWidget {
                     : AppText(
                         text,
                         style: theme.textTheme.labelLarge?.copyWith(
-                          color: AppColors.lightPrimary, // #54A312
+                          color: colors.primary,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w700,
                           height: 1.70,

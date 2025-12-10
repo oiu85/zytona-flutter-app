@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../constant/app_colors.dart';
 import '../localization/app_text.dart';
+import '../theme/app_color_extension.dart';
 
 /// Custom filled button with gradient background
 /// Matches Figma design for healthy food app
@@ -29,18 +29,19 @@ class CustomFilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colors = theme.extension<AppColorExtension>()!;
 
     return Container(
       width: width ?? double.infinity,
       height: height ?? 52.h,
       padding: padding ?? EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
       decoration: ShapeDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment(0.50, -0.00),
           end: Alignment(0.50, 1.00),
           colors: [
-            AppColors.gradientStart, // #5EAD1C
-            AppColors.gradientEnd, // #54A312
+            colors.gradientStart,
+            colors.gradientEnd,
           ],
         ),
         shape: RoundedRectangleBorder(
@@ -64,7 +65,7 @@ class CustomFilledButton extends StatelessWidget {
                           AppText(
                             text,
                             style: theme.textTheme.labelLarge?.copyWith(
-                              color: AppColors.lightTextOnPrimary,
+                              color: colors.textOnPrimary,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w700,
                               height: 1.70,
@@ -76,7 +77,7 @@ class CustomFilledButton extends StatelessWidget {
                     : AppText(
                         text,
                         style: theme.textTheme.labelLarge?.copyWith(
-                          color: AppColors.lightTextOnPrimary,
+                          color: colors.textOnPrimary,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w700,
                           height: 1.70,

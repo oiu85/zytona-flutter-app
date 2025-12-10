@@ -13,7 +13,7 @@ import 'package:zyktona_app_flutter/features/onboarding/presentation/pages/onboa
 import 'package:zyktona_app_flutter/features/onboarding/presentation/pages/onboarding_page_two.dart';
 import 'package:zyktona_app_flutter/features/onboarding/presentation/pages/onboarding_page_three.dart';
 // import 'package:zyktona_app_flutter/features/auth/presentation/pages/signup_page.dart';
-// import 'package:zyktona_app_flutter/features/auth/presentation/pages/login_page.dart';
+import 'package:zyktona_app_flutter/features/auth/presentation/pages/login_page.dart';
 // import 'package:zyktona_app_flutter/features/auth/presentation/pages/check_email_page.dart';
 // import 'package:zyktona_app_flutter/features/auth/presentation/pages/verify_otp_page.dart';
 // import 'package:zyktona_app_flutter/features/auth/presentation/pages/reset_password_page.dart';
@@ -125,12 +125,12 @@ class AppRouter {
       //   pageBuilder: (context, state) =>
       //       MaterialPage(key: state.pageKey, child: const SignupPage()),
       // ),
-      // GoRoute(
-      //   path: AppRoutes.login,
-      //   name: 'login',
-      //   pageBuilder: (context, state) =>
-      //       MaterialPage(key: state.pageKey, child: const LoginPage()),
-      // ),
+      GoRoute(
+        path: AppRoutes.login,
+        name: 'login',
+        pageBuilder: (context, state) =>
+            MaterialPage(key: state.pageKey, child: const LoginPage()),
+      ),
       // GoRoute(
       //   path: AppRoutes.checkEmail,
       //   name: 'checkEmail',

@@ -6,7 +6,8 @@ import '../routing/navigation_observer.dart';
 // import '../../features/campaign/di/campaign_di.dart';
 // import '../../features/blog/di/blog_di.dart';
 // import '../../features/payment/di/payment_di.dart';
-// import '../../features/auth/di/auth_di.dart';
+import '../../features/auth/di/auth_di.dart';
+import '../../features/onboarding/di/onboarding_di.dart';
 // import '../../features/menu/di/menu_di.dart';
 // import '../../features/profile/di/profile_di.dart';
 // import '../../features/calculator/di/calculator_di.dart';
@@ -55,6 +56,12 @@ Future<GetIt> configureDependencies() async {
     NetworkClient(getIt<AppStorageService>()),
   );
   
+  // Register Onboarding feature dependencies
+  registerOnboardingDi(getIt);
+  
+  // Register Auth feature dependencies
+  registerAuthDi(getIt);
+  
   // TODO: Uncomment when home feature is created
   // Register Home feature dependencies
   // getIt.registerLazySingleton<HomeRemoteDataSource>(
@@ -79,9 +86,6 @@ Future<GetIt> configureDependencies() async {
   
   // Register Payment feature dependencies
   // registerPaymentDi(getIt);
-  
-  // Register Auth feature dependencies
-  // registerAuthDi(getIt);
   
   // Register Menu feature dependencies
   // registerMenuDi(getIt);

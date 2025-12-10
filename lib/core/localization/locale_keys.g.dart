@@ -19,6 +19,10 @@ abstract class  LocaleKeys {
   static const auth_already_have_account = 'auth.already_have_account';
   static const auth_sign_up = 'auth.sign_up';
   static const auth_sign_in = 'auth.sign_in';
+  static const auth_welcome_back = 'auth.welcome_back';
+  static const auth_login_subtitle = 'auth.login_subtitle';
+  static const auth_email_hint = 'auth.email_hint';
+  static const auth_password_hint = 'auth.password_hint';
   static const auth_full_name = 'auth.full_name';
   static const auth_phone_number = 'auth.phone_number';
   static const auth_verify_otp = 'auth.verify_otp';

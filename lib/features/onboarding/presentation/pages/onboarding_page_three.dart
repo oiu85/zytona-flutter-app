@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:zyktona_app_flutter/core/constant/app_colors.dart';
 import 'package:zyktona_app_flutter/core/component/custom_filled_button.dart';
 import 'package:zyktona_app_flutter/core/component/custom_outlined_button.dart';
+import 'package:zyktona_app_flutter/core/di/app_dependencies.dart';
 import 'package:zyktona_app_flutter/core/localization/app_text.dart';
 import 'package:zyktona_app_flutter/core/localization/locale_keys.g.dart';
 import 'package:zyktona_app_flutter/core/routing/app_routes.dart';
+import 'package:zyktona_app_flutter/core/theme/app_color_extension.dart';
+import 'package:zyktona_app_flutter/features/onboarding/presentation/bloc/onboarding_bloc.dart';
+import 'package:zyktona_app_flutter/features/onboarding/presentation/bloc/onboarding_event.dart';
+import 'package:zyktona_app_flutter/features/onboarding/presentation/bloc/onboarding_state.dart';
 import 'package:zyktona_app_flutter/gen/assets.gen.dart';
 
 /// Third onboarding page
@@ -18,9 +23,27 @@ class OnboardingPageThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colors = theme.extension<AppColorExtension>()!;
 
+    return BlocProvider(
+      create: (context) => getIt<OnboardingBloc>()..add(const ChangePage(2)),
+      child: BlocListener<OnboardingBloc, OnboardingState>(
+        listener: (context, state) {
+          if (state.navigationAction == OnboardingNavigationAction.complete) {
+            context.read<OnboardingBloc>().add(const ResetNavigationAction());
+            context.go(AppRoutes.login);
+          }
+        },
+        child: Builder(
+          builder: (context) => _buildContent(context, theme, colors),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context, ThemeData theme, AppColorExtension colors) {
     return Scaffold(
-      backgroundColor: AppColors.lightBackground,
+      backgroundColor: colors.background,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -58,7 +81,7 @@ class OnboardingPageThree extends StatelessWidget {
                       LocaleKeys.onboarding_pageThree_title,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.displayLarge?.copyWith(
-                        color: AppColors.lightTextPrimary,
+                        color: colors.textPrimary,
                         fontSize: 32.sp,
                         fontWeight: FontWeight.w700,
                         height: 1.20,
@@ -70,7 +93,7 @@ class OnboardingPageThree extends StatelessWidget {
                       LocaleKeys.onboarding_pageThree_description,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.bodyLarge?.copyWith(
-                        color: AppColors.lightTextSecondary,
+                        color: colors.textSecondary,
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w400,
                         height: 1.70,
@@ -88,7 +111,7 @@ class OnboardingPageThree extends StatelessWidget {
                           width: 8.w,
                           height: 8.h,
                           decoration: ShapeDecoration(
-                            color: AppColors.lightInactiveIndicator,
+                            color: colors.inactiveIndicator,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.r),
                             ),
@@ -100,7 +123,7 @@ class OnboardingPageThree extends StatelessWidget {
                           width: 8.w,
                           height: 8.h,
                           decoration: ShapeDecoration(
-                            color: AppColors.lightInactiveIndicator,
+                            color: colors.inactiveIndicator,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.r),
                             ),
@@ -112,7 +135,7 @@ class OnboardingPageThree extends StatelessWidget {
                           width: 24.w,
                           height: 8.h,
                           decoration: ShapeDecoration(
-                            color: AppColors.lightPrimary,
+                            color: colors.primary,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.r),
                             ),
@@ -132,14 +155,13 @@ class OnboardingPageThree extends StatelessWidget {
                           child: CustomFilledButton(
                             text: LocaleKeys.onboarding_continue_with_email,
                             onPressed: () {
-                              // Handle Email login
-                              context.go(AppRoutes.login);
+                              context.read<OnboardingBloc>().add(const CompleteOnboarding());
                             },
                             icon: Image.asset(
                               Assets.images.icons.emailFilled.path,
                               width: 24.w,
                               height: 24.h,
-                              color: AppColors.lightTextOnPrimary, // White for filled button
+                              color: colors.textOnPrimary, // White for filled button
                               colorBlendMode: BlendMode.srcIn,
                             ),
                           ),
@@ -155,16 +177,15 @@ class OnboardingPageThree extends StatelessWidget {
                             CustomOutlinedButton(
                               width: 160.w,
                               text: LocaleKeys.onboarding_apple,
-                              onPressed: () {
-                                // Handle Apple login
-                                context.go(AppRoutes.login);
-                              },
+                  onPressed: () {
+                    context.read<OnboardingBloc>().add(const CompleteOnboarding());
+                  },
                               icon: SvgPicture.asset(
                                 Assets.images.icons.apple.path,
                                 width: 24.w,
                                 height: 24.h,
                                 colorFilter: ColorFilter.mode(
-                                  AppColors.lightPrimary, // Green color matching theme
+                                  colors.primary, // Green color matching theme
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -176,10 +197,9 @@ class OnboardingPageThree extends StatelessWidget {
                             CustomOutlinedButton(
                               width: 160.w,
                               text: LocaleKeys.onboarding_google,
-                              onPressed: () {
-                                // Handle Google login
-                                context.go(AppRoutes.login);
-                              },
+                  onPressed: () {
+                    context.read<OnboardingBloc>().add(const CompleteOnboarding());
+                  },
                               icon: Image.asset(
                                 Assets.images.icons.googlePng.path,
                                 width: 24.w,
