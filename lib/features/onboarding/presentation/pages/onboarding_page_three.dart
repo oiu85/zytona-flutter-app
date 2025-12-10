@@ -45,7 +45,6 @@ class OnboardingPageThree extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 40.h),
 
               // Content section at bottom
               Expanded(
@@ -79,6 +78,50 @@ class OnboardingPageThree extends StatelessWidget {
                     ),
 
                     SizedBox(height: 40.h),
+
+                    // Page indicator dots
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Inactive dot (page 1)
+                        Container(
+                          width: 8.w,
+                          height: 8.h,
+                          decoration: ShapeDecoration(
+                            color: AppColors.lightInactiveIndicator,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8.w),
+                        // Inactive dot (page 2)
+                        Container(
+                          width: 8.w,
+                          height: 8.h,
+                          decoration: ShapeDecoration(
+                            color: AppColors.lightInactiveIndicator,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8.w),
+                        // Active dot (page 3)
+                        Container(
+                          width: 24.w,
+                          height: 8.h,
+                          decoration: ShapeDecoration(
+                            color: AppColors.lightPrimary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16.h),
 
                     // Social login buttons
                     Column(
